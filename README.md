@@ -1,3 +1,21 @@
+### Solution
+
+Exercise updated by Juan M Berrocal.
+
+- Existing methods filled in
+- Existing tests passing
+
+Added:
+	- List
+		-- attr_accessor for :sorted attr
+		-- attr_reader for :nodes (list has linked Node objects)
+		-- test for "each" method 
+	- Node
+		-- "link" method
+		-- test for "link" method
+
+---
+
 ### Overview
 
 This repo contains an incomplete linked list implementation, with failing tests.
