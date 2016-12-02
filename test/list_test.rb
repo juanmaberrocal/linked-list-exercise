@@ -95,6 +95,41 @@ describe List do
 
         list.elements.must_equal(data.slice(1, data.length))
       end
+
+      it "should empty list of run through each" do
+        list.send(:each){ |node| list.pop }
+
+        list.length.must_equal 0
+      end
+    end
+  end
+
+  describe "#each" do
+    let(:data) { [1,2] }
+
+    before do
+      data.each do |i|
+        list.add(i)
+      end
+    end
+
+    it "should loop through all elements and yield to block" do
+      i=0
+
+      list.send(:each) do |element|
+        element.object.must_equal data[i]
+        i += 1
+      end
+    end
+  end
+
+  describe "#empty?" do
+    it "should return false if a head and/or tail is set" do
+      list.send(:empty?).must_equal true
+
+      list.add(1)
+
+      list.send(:empty?).must_equal false
     end
   end
 
