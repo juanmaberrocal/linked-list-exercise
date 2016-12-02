@@ -15,7 +15,7 @@ class List
     new_node = Node.new(object)
 
     # check if list is empty
-    if self.empty?
+    if empty?
       # if empty, object is head|tail
       @head = new_node
       @tail = @head
@@ -26,7 +26,7 @@ class List
         prev_node = nil
 
         # go through each list element
-        self.each do |curr_node|
+        each do |curr_node|
           # if element is greater than new object
           if curr_node.object > object
             # check if a prev node has been set
@@ -60,6 +60,7 @@ class List
     end
   end
 
+  protected
   # enumerable mixin method
   def each
     if block_given?
@@ -72,32 +73,35 @@ class List
     end
   end
 
+  public
   # returns all elements in list
   def elements
     # set array of objects and add each
     objects = []
-    self.each{ |node| objects << node.object }
+    each{ |node| objects << node.object }
 
     # return array of element objects
     objects
   end
 
+  protected
   # returns true if the list is empty, false otherwise
   def empty?
     # if head and tail are nil, no node has been added
     @head.nil? and @tail.nil?
   end
 
+  public
   # returns length of list
   def length
     # leverage #elements method which returns array of objects in list
-    self.elements.length
+    elements.length
   end
 
   # returns true if object is a member of the list, false otherwise
   def member?(object)
     # check every object in list
-    self.each do |node|
+    each do |node|
       # if objects match, break loop and return true
       if node.object == object
         return true
@@ -110,7 +114,7 @@ class List
 
   # returns and removes the first element of the list; or nil if the list is empty
   def pop
-    if self.empty?
+    if empty?
       nil
     else
       # set objected "popped" and new head
